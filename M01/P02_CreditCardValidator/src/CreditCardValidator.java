@@ -12,7 +12,15 @@ public class CreditCardValidator {
     /** Return this number if it is a single digit, otherwise,
      * return the sum of the two digits */
     public static int getDigit(int number) {
-        return 0;
+        int newNumber = 0;
+        if (number > 9) {
+            while (number > 0) {
+                newNumber += number % 10;
+                number /= 10;
+            }
+            return newNumber;
+        }
+        return number;
     }
 
     /** Return sum of odd-place digits in number */
@@ -33,6 +41,12 @@ public class CreditCardValidator {
     /** Return the first k number of digits from number. If the
      * number of digits in number is less than k, return number. */
     public static long getPrefix(long number, int k) {
-        return 0;
+
+        String numberCpyStr = String.valueOf(number);
+        if (numberCpyStr.length() > k) {
+            return Long.parseLong(numberCpyStr.substring(0, k));
+        }
+        else
+            return number;
     }
 }
