@@ -12,15 +12,8 @@ public class CreditCardValidator {
     /** Return this number if it is a single digit, otherwise,
      * return the sum of the two digits */
     public static int getDigit(int number) {
-        int newNumber = 0;
-        if (number > 9) {
-            while (number > 0) {
-                newNumber += number % 10;
-                number /= 10;
-            }
-            return newNumber;
-        }
-        return number;
+
+        return (number / 10) + (number % 10);
     }
 
     /** Return sum of odd-place digits in number */
