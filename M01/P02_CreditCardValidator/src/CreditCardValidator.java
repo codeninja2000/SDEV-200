@@ -13,14 +13,9 @@ public class CreditCardValidator {
         for (int i = 1; i <= size; i++) {
             // If our current pos is even
             if (i % 2 == 0) {
-                // Get digit
-                // Double digit
                 // Get, double,and normalize even position digits and sum them
                 sum += getDigit((int)(number % 10) * 2);
                 System.out.printf("sum: %d%n", sum);
-            } else {
-                // Sum odd position digits
-                sum += (int)(number % 10);
             }
             // Advanced to next digit
             number = number / 10;
@@ -37,12 +32,27 @@ public class CreditCardValidator {
 
     /** Return sum of odd-place digits in number */
     public static int sumOfOddPlace(long number) {
-        return 0;
+        int sum = 0;
+
+        int size = String.valueOf(number).length();
+
+        for (int i = 1; i <= size; i++) {
+            // If our current pos is odd
+            if (i % 2 == 1) {
+
+                // Sum odd position digits
+                sum += (int)(number % 10);
+                System.out.printf("sum: %d%n", sum);
+            }
+            // Advanced to next digit
+            number = number / 10;
+        }
+        return sum;
     }
 
     /** Return true if the number d is a prefix for number */
     public static boolean prefixMatched(long number, int d) {
-        return true;
+        return getPrefix(number, 1) == d || getPrefix(number, 2) == d;
     }
 
     /** Return the number of digits in d */
@@ -62,3 +72,5 @@ public class CreditCardValidator {
             return number;
     }
 }
+
+
