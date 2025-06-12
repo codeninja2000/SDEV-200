@@ -27,7 +27,7 @@ public class CreditCardValidator {
 
     /** Return the number of digits in d */
     public static int getSize(long d) {
-        return 0;
+        return String.valueOf(d).length();
     }
 
     /** Return the first k number of digits from number. If the
