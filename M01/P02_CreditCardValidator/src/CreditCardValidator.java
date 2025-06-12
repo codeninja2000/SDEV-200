@@ -1,14 +1,22 @@
 public class CreditCardValidator {
     /** Return true if the card number is valid */
     public static boolean isValid(long number) {
-        return true;
+        final int VISA = 4;
+        final int MASTER = 5;
+        final int DISCOVER = 6;
+        final int AMEX = 37;
+        return ( (getSize(number) >= 13 && getSize(number) <= 16) &&
+                ( prefixMatched(number, VISA) || prefixMatched(number, MASTER) ||
+                        prefixMatched(number, DISCOVER) || prefixMatched(number, AMEX) ) &&
+                (sumOfDoubleEvenPlace(number) + sumOfOddPlace(number)) % 10 == 0 );
+
     }
 
     /** Get the result from Step 2 */
     public static int sumOfDoubleEvenPlace(long number) {
         int sum = 0;
 
-        int size = String.valueOf(number).length();
+        int size = getSize(number);
 
         for (int i = 1; i <= size; i++) {
             // If our current pos is even
@@ -34,12 +42,11 @@ public class CreditCardValidator {
     public static int sumOfOddPlace(long number) {
         int sum = 0;
 
-        int size = String.valueOf(number).length();
+        int size = getSize(number);
 
         for (int i = 1; i <= size; i++) {
             // If our current pos is odd
             if (i % 2 == 1) {
-
                 // Sum odd position digits
                 sum += (int)(number % 10);
                 System.out.printf("sum: %d%n", sum);
@@ -52,7 +59,7 @@ public class CreditCardValidator {
 
     /** Return true if the number d is a prefix for number */
     public static boolean prefixMatched(long number, int d) {
-        return getPrefix(number, 1) == d || getPrefix(number, 2) == d;
+        return getPrefix(number, getSize(d)) == d;
     }
 
     /** Return the number of digits in d */

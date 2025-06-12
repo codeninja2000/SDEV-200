@@ -1,15 +1,12 @@
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+// Driver program for CreditCardValidator
 public class Main {
     public static void main(String[] args) {
-            Scanner input = new Scanner(System.in);
-        // Prompt for Credit card number
+        Scanner input = new Scanner(System.in);
+
         long creditCardNumber = getCreditCardNumber(input);
 
-        // Check for validity
-        // Print validity results
         if (CreditCardValidator.isValid(creditCardNumber)) {
             System.out.println("Credit card number is valid!");
         } else {
@@ -17,6 +14,12 @@ public class Main {
         }
     }
 
+    // Function to handle credit card number input
+    // Precondition: sc must point to an existing Scanner(System.in) object.
+    // size must be an integer in the interval [13,16].
+    // Postcondition: A (possibly invalid) credit card number is returned. This method
+    // only verifies that the size of the number falls within a certain range, it does not do
+    // any further validation checks.
     public static long getCreditCardNumber(Scanner sc) {
         int size;
         long cardNumber;
