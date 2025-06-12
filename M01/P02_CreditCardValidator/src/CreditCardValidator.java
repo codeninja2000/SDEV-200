@@ -6,7 +6,26 @@ public class CreditCardValidator {
 
     /** Get the result from Step 2 */
     public static int sumOfDoubleEvenPlace(long number) {
-        return 0;
+        int sum = 0;
+
+        int size = String.valueOf(number).length();
+
+        for (int i = 1; i <= size; i++) {
+            // If our current pos is even
+            if (i % 2 == 0) {
+                // Get digit
+                // Double digit
+                // Get, double,and normalize even position digits and sum them
+                sum += getDigit((int)(number % 10) * 2);
+                System.out.printf("sum: %d%n", sum);
+            } else {
+                // Sum odd position digits
+                sum += (int)(number % 10);
+            }
+            // Advanced to next digit
+            number = number / 10;
+        }
+        return sum;
     }
 
     /** Return this number if it is a single digit, otherwise,
