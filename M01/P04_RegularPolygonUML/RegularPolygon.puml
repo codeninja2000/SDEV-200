@@ -1,0 +1,28 @@
+@startuml
+' Disable shape representation of modifiers
+
+skinparam classAttributeIconSize 0
+
+class RegularPolygon {
+- n: int = 3
+- side: double = 1
+- x: double = 0
+- y: double = 0
++ RegularPolygon()
++ RegularPolygon(nSides: int, sideLength: double)
++ RegularPolygon(nSides: int, sideLength: double,\n\t\t\t     x: double, y: double)
++ getN(): int
++ setN(): void
++ getSide(): double
++ setSide(): void
++ getX(): double
++ getY(): double
++ getPerimeter(): double
++ getArea(): double
+}
+note right of RegularPolygon
+Since all fields have default values we would only need,
+to implement one constructor that initializes the fields
+with user-supplied arguments <i>or</i> with the default values.
+end note
+@enduml
