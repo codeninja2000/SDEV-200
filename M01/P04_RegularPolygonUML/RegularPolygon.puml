@@ -20,9 +20,5 @@ class RegularPolygon {
 + getPerimeter(): double
 + getArea(): double
 }
-note right of RegularPolygon
-Since all fields have default values we would only need,
-to implement one constructor that initializes the fields
-with user-supplied arguments <i>or</i> with the default values.
-end note
+
 @enduml
