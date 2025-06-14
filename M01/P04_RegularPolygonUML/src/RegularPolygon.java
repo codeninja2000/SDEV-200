@@ -4,9 +4,9 @@ public class RegularPolygon {
     private double x = 0; // x-coordinate of center
     private double y = 0; // y-coordinate of center
 
-    RegularPolygon() {}
+    public RegularPolygon() {}
 
-    RegularPolygon(int n, double side) {
+    public RegularPolygon(int n, double side) {
         if (n < 3) {
             throw new IllegalArgumentException("Polygons must have at least 3 sides.");
         }
@@ -17,7 +17,7 @@ public class RegularPolygon {
         this.side = side;
     }
 
-    RegularPolygon(int n, double side, double x, double y) {
+    public RegularPolygon(int n, double side, double x, double y) {
         this(n, side);
         this.x = x;
         this.y = y;
@@ -68,5 +68,10 @@ public class RegularPolygon {
 
     public double getArea() {
         return (n * side * side) / (4 * Math.tan(Math.PI / n));
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Perimeter: %.2f \nArea: %.2f\n", getPerimeter(), getArea());
     }
 }
