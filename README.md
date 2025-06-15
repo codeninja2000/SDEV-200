@@ -1,4 +1,7 @@
 # SDEV-200 Software Development with Java
+
+![](https://github.com/codeninja2000/SDEV-200/blob/1e7b627cfa5f671dfe66430dec09db8e1c60b569/resources/bannerforsdev200.png)
+
 **Description:**
 
 Repository for my Java class programming assignments.
