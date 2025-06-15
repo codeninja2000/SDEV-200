@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/M01/P01_LengthConverter/P01_LengthConverter.iml" filepath="$PROJECT_DIR$/M01/P01_LengthConverter/P01_LengthConverter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/M01/P02_CreditCardValidator/P02_CreditCardValidator.iml" filepath="$PROJECT_DIR$/M01/P02_CreditCardValidator/P02_CreditCardValidator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/M01/P04_RegularPolygonUML/P04_RegularPolygonUML.iml" filepath="$PROJECT_DIR$/M01/P04_RegularPolygonUML/P04_RegularPolygonUML.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SDEV-200.iml" filepath="$PROJECT_DIR$/.idea/SDEV-200.iml" />
+    </modules>
+  </component>
+</project>
