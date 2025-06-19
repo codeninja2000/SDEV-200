@@ -13,17 +13,17 @@ public class MyDate {
     MyDate() {
         GregorianCalendar cal = new GregorianCalendar();
         year = cal.get(GregorianCalendar.YEAR);
-        month = cal.get(GregorianCalendar.MONTH);
+        month = cal.get(GregorianCalendar.MONTH) + 1;
         day = cal.get(GregorianCalendar.DAY_OF_MONTH);
     }
 
     MyDate(long elapsedTime) {
         GregorianCalendar cal = new GregorianCalendar();
-        Date date = new Date(elapsedTime * 1000);
+        Date date = new Date(elapsedTime);
         cal.setTime(date);
-        cal.setTimeZone(TimeZone.getDefault());
+        //cal.setTimeZone(TimeZone.getDefault());
         year = cal.get(GregorianCalendar.YEAR);
-        month = cal.get(GregorianCalendar.MONTH);
+        month = cal.get(GregorianCalendar.MONTH) + 1;
         day = cal.get(GregorianCalendar.DAY_OF_MONTH);
     }
 
@@ -31,7 +31,7 @@ public class MyDate {
         GregorianCalendar cal = new GregorianCalendar();
         cal.set(year, mapMonth(month), day);
         this.year = cal.get(GregorianCalendar.YEAR);
-        this.month = cal.get(GregorianCalendar.MONTH);
+        this.month = cal.get(GregorianCalendar.MONTH) + 1;
         this.day = cal.get(GregorianCalendar.DAY_OF_MONTH);
     }
 
@@ -40,7 +40,7 @@ public class MyDate {
     }
 
     public int getMonth() {
-        return month + 1; // months are zero based
+        return month; // months are zero based
     }
 
     public int getDay() {
