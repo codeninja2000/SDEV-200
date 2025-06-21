@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam classAttributeIconSize 0
+title Triangle Class Diagram
+abstract class GeometricObject
+
+class Triangle {
+- side1: double = 1.0
+- side2: double = 1.0
+- side3: double = 1.0
++ Triangle()
++ Triangle(side1: double, side2: double, side3: double)
++ getSide1(): double
++ getSide2(): double
++ getSide3(): double
++ getArea(): double
++ getPerimeter(): double
++ toString(): String
+}
+
+GeometricObject <|-- Triangle
+
+@enduml
