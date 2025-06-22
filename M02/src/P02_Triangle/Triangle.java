@@ -5,7 +5,16 @@ public class Triangle  extends GeometricObject {
     double side2 = 1.0;
     double side3 = 1.0;
 
+    /**
+     * Default constructor.
+     */
     public Triangle() {}
+
+    /**
+     * @param side1 side 1 of triangle
+     * @param side2 side 2 of triangle
+     * @param side3 side 3 of triangle
+     */
     public Triangle(double side1, double side2, double side3) {
         super();
         this.side1 = side1;
@@ -25,7 +34,7 @@ public class Triangle  extends GeometricObject {
         return side3;
     }
 
-    // s = side1+side2+side3, area = sqrt( s * (s-side1)(s-side2)(s-side3)
+
     public double getArea() {
         double s = getPerimeter() / 2;
         return Math.sqrt(s * (s - side1) * (s - side2) * (s - side3)); // Heron's formula

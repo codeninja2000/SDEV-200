@@ -3,13 +3,20 @@ package P01_MyDate;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Date;
-import java.util.TimeZone;
 
+/**
+ * MyDate represents a specific date (YYYY/MM/DD).
+ * @author Grant Simpson
+ *
+ */
 public class MyDate {
     private int year;
     private int month;
     private int day;
 
+    /**
+     * The default constructor constructs today's date.
+     */
     MyDate() {
         GregorianCalendar cal = new GregorianCalendar();
         year = cal.get(GregorianCalendar.YEAR);
@@ -17,16 +24,26 @@ public class MyDate {
         day = cal.get(GregorianCalendar.DAY_OF_MONTH);
     }
 
+
+    /**
+     * Given a period of time in milliseconds, this constructor converts the time into a date of the form <i>YYYY/MM/DD</i>
+     * @param elapsedTime time in milliseconds
+     */
     MyDate(long elapsedTime) {
         GregorianCalendar cal = new GregorianCalendar();
         Date date = new Date(elapsedTime);
         cal.setTime(date);
-        //cal.setTimeZone(TimeZone.getDefault());
         year = cal.get(GregorianCalendar.YEAR);
         month = cal.get(GregorianCalendar.MONTH) + 1;
         day = cal.get(GregorianCalendar.DAY_OF_MONTH);
     }
 
+    /**
+     * A date is constructed with the given year, month, and day
+     * @param year the value used to set the year
+     * @param month the value used to set the month
+     * @param day - the value used to set the day
+     */
     MyDate(int year, int month, int day) {
         GregorianCalendar cal = new GregorianCalendar();
         cal.set(year, mapMonth(month), day);
@@ -34,6 +51,7 @@ public class MyDate {
         this.month = cal.get(GregorianCalendar.MONTH) + 1;
         this.day = cal.get(GregorianCalendar.DAY_OF_MONTH);
     }
+
 
     public int getYear() {
         return year;
@@ -55,6 +73,12 @@ public class MyDate {
         day = cal.get(GregorianCalendar.DAY_OF_MONTH);
     }
 
+    /**
+     * Given an integer representing a month, returns the Calendar constant representing the month. The Calendar constants
+     * (e.g. Calendar.MAY, Calendar.JUNE, etc.) returned are zero based. For example, Calendar.APRIL returns 3, not 4.
+     * @param month a value representing a month
+     * @return Calendar.[MONTH]. -1 if a number not representing a month is given.
+     */
     private static int mapMonth(int month) {
         return switch (month) {
             case 1 -> Calendar.JANUARY;
