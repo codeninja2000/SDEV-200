@@ -3,30 +3,37 @@ package P01_ComparableCircle;
 public class Circle extends GeometricObject
     implements Comparable<Circle> {
 
-    private double radius;
+    private double radius; // The radius of the circle
 
+    // Construct a default circle
     public Circle() {
     }
 
+    // Construct a circle with a specified radius
     public Circle(double radius) {
         this.radius = radius;
     }
 
     @Override // Implement compareTo
     // Returns a negative integer, zero, or a positive integer if
-    // the object is less than, equal to, or greater than otherCircle, respectively
+    // the object is less than, equal to, or greater than otherCircle, respectively.
     public int compareTo(Circle otherCircle) {
         return Double.compare(this.radius, otherCircle.radius);
     }
+
+    // Override equals method
+    // Returns true if the two circles have the same radius or if "this" and "o"
+    // reference the same object, otherwise returns false.
     @Override // Implement equals
     public boolean equals(Object o) {
+        if (o == null) throw new NullPointerException();
         // If object is compared to itself, return true
         if (this == o) return true;
         // If object is null or the two object's classes differ return false
-        if (o == null || getClass() != o.getClass()) return false;
+        if (getClass() != o.getClass()) return false;
         Circle circle = (Circle) o;
         // If compare indicates equality (returning 0), return true
-        return Double.compare(circle.radius, radius) == 0;
+        return Double.compare(this.radius, circle.radius) == 0;
     }
 
     /** Return radius */
