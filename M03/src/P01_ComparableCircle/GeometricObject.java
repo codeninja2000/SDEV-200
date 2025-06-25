@@ -1,6 +1,6 @@
 package P01_ComparableCircle;
 
-public abstract class GeometricObject {
+public abstract class GeometricObject        {
     private String color = "white";
     private boolean filled;
     private java.util.Date dateCreated;
