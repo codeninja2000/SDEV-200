@@ -1,5 +1,12 @@
 package P01_ComparableCircle;
 
+/**
+ * The Circle class represents a geometric circle with a specified radius.
+ * It extends GeometricObject and implements the Comparable interface to allow
+ * comparison of Circle objects based on their radius.
+ * Provides methods to calculate area, diameter, and perimeter, as well as
+ * to compare and check equality with other Circle instances.
+ */
 public class Circle extends GeometricObject
     implements Comparable<Circle> {
 
