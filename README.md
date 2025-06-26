@@ -24,3 +24,7 @@ Repository for my Java class programming assignments.
 - [P02 - Triangle](M02/src/P02_Triangle)
 - [P03 - BinaryFormatException](M02/src/P03_BinaryFormatException)
 - [out - compiled programs](M02/out/production/M02)
+
+[Module 03](M03)
+- [P01 - ComparableCircle](M03/src/P01_ComparableCircle)
+- [out - compiled programs](M03/out/production/P01_ComparableCircle)
