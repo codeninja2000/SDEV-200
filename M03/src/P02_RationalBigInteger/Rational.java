@@ -110,10 +110,11 @@ public class Rational extends Number implements Comparable<Rational> {
 
     @Override // Override the equals method in the Object class
     public boolean equals(Object other) {
-        if ((this.subtract((Rational) (other))).getNumerator().equals(BigInteger.ZERO))
-            return true;
-        else
-            return false;
+    // Check if the other object is an instance of Rational
+        if (!(other instanceof Rational)) {
+            return false; // Not a Rational instance
+        }
+        return (this.subtract((Rational) (other))).getNumerator().equals(BigInteger.ZERO);
     }
 
     @Override // Implement the abstract intValue method in Number
