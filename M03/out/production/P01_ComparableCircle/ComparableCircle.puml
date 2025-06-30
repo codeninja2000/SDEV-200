@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/class-diagram
+title Circle Class Diagram
+
+skinparam classAttributeIconSize 0
+
+Interface "ComparableCircle" as cc {
+    +compareTo(other: ComparableCircle): int
+}
+abstract class "GeometricObject" as gc {
+    -color: String
+    -filled: boolean
+    -dateCreated: Date
+    #GeometricObject()
+    #GeometricObject(color: String, filled: boolean)
+    +getColor(): String
+    +setColor(color: String): void
+    +isFilled(): boolean
+    +setFilled(filled: boolean): void
+    +getDateCreated(): Date
+    +toString(): String
+    +getArea(): double
+    +getPerimeter(): double
+}
+class "Circle" as c{
+    -radius: double
+    +Circle()
+    +Circle(radius: double)
+    +compareTo(other: ComparableCircle): int
+    +equals(other: Object): boolean
+    +getRadius(): double
+    +setRadius(radius: double): void
+    +getArea(): double
+    +getDiameter(): double
+    +getPerimeter(): double
+    +printCircle(): void
+}
+cc <|.. c : implements
+gc <|-- c : extends
+@enduml
