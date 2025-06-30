@@ -27,4 +27,5 @@ Repository for my Java class programming assignments.
 
 [Module 03](M03)
 - [P01 - ComparableCircle](M03/src/P01_ComparableCircle)
-- [out - compiled programs](M03/out/production/P01_ComparableCircle)
+- [P02 - RationalBigInteger](M03/src/P02_RationalBigInteger)
+- [out - compiled programs](M03/out/production)
