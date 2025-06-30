@@ -1,7 +1,26 @@
 package P02_RationalBigInteger;
 
 import java.math.BigInteger;
-
+/**
+ * Represents a rational number (fraction) using BigInteger for both numerator and
+ * denominator. This class extends Number and implements Comparable<Rational>.
+ * 
+ * <p>This class provides:</p>
+ * <ul>
+ *   <li>Storage of rational numbers in their simplified form (reduced by GCD)</li>
+ *   <li>Basic arithmetic operations (addition, subtraction, multiplication, division)</li>
+ *   <li>Comparison between rational numbers</li>
+ *   <li>Conversion to various numeric types (int, long, float, double)</li>
+ *   <li>String representation in the form "numerator/denominator"</li>
+ * </ul>
+ * 
+ * <p>Rational numbers are always stored in their reduced form, and the denominator
+ * is always positive. If the rational number is negative, the sign is stored in
+ * the numerator.</p>
+ * 
+ * @see Number
+ * @see Comparable
+ */
 public class Rational extends Number implements Comparable<Rational> {
     // Data fields for numerator and denominator
     private BigInteger numerator = BigInteger.ZERO;
@@ -15,14 +34,21 @@ public class Rational extends Number implements Comparable<Rational> {
     }
 
     /**
-     * Construct a rational with specified numerator and denominator
+     * Construct a rational with the specified numerator and denominator
      */
-    public Rational(BigInteger numerator, BigInteger denominator) {
+    public Rational(BigInteger numerator, BigInteger denominator) throws IllegalArgumentException {
+        if (denominator.equals(BigInteger.ZERO)) {
+            throw new IllegalArgumentException("Denominator cannot be zero");
+        }
         BigInteger gcd = gcd(numerator, denominator);
         this.numerator = numerator.abs().divide(gcd);
         this.denominator = denominator.abs().divide(gcd);
     }
-    public Rational(long numerator, long denominator) {
+    // Construct a rational given a numerator and denominator of type long
+    public Rational(long numerator, long denominator) throws IllegalArgumentException {
+        if (denominator == 0) {
+            throw new IllegalArgumentException("Denominator cannot be zero");
+        }
         BigInteger n = BigInteger.valueOf(numerator);
         BigInteger d = BigInteger.valueOf(denominator);
         BigInteger gcd = gcd(n, d);
@@ -34,7 +60,6 @@ public class Rational extends Number implements Comparable<Rational> {
      * Find GCD of two numbers
      */
     private static BigInteger gcd(BigInteger n, BigInteger d) {
-
         BigInteger n1 = n.abs();
         BigInteger n2 = d.abs();
         return n1.gcd(n2);
@@ -58,9 +83,6 @@ public class Rational extends Number implements Comparable<Rational> {
      * Add a rational number to this rational
      */
     public Rational add(Rational secondRational) {
-//        long n = numerator * secondRational.getDenominator() +
-//                denominator * secondRational.getNumerator();
-//        long d = denominator * secondRational.getDenominator();
         BigInteger n = numerator.multiply(secondRational.getDenominator()).add(secondRational.getNumerator().multiply(denominator));
         BigInteger d = denominator.multiply(secondRational.getDenominator());
         return new Rational(n, d);
@@ -70,9 +92,6 @@ public class Rational extends Number implements Comparable<Rational> {
      * Subtract a rational number from this rational
      */
     public Rational subtract(Rational secondRational) {
-//        long n = numerator * secondRational.getDenominator()
-//                - denominator * secondRational.getNumerator();
-//        long d = denominator * secondRational.getDenominator();
         BigInteger n = numerator.multiply(secondRational.getDenominator()).subtract(secondRational.getNumerator().multiply(denominator));
         BigInteger d = denominator.multiply(secondRational.getDenominator());
         return new Rational(n, d);
@@ -82,8 +101,6 @@ public class Rational extends Number implements Comparable<Rational> {
      * Multiply a rational number to this rational
      */
     public Rational multiply(Rational secondRational) {
-//        long n = numerator * secondRational.getNumerator();
-//        long d = denominator * secondRational.getDenominator();
         BigInteger n = numerator.multiply(secondRational.getNumerator());
         BigInteger d = denominator.multiply(secondRational.getDenominator());
         return new Rational(n, d);
@@ -93,8 +110,6 @@ public class Rational extends Number implements Comparable<Rational> {
      * Divide a rational number from this rational
      */
     public Rational divide(Rational secondRational) {
-//        long n = numerator * secondRational.getDenominator();
-//        long d = denominator * secondRational.numerator;
         BigInteger n = numerator.multiply(secondRational.getDenominator());
         BigInteger d = denominator.multiply(secondRational.getNumerator());
         return new Rational(n, d);

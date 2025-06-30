@@ -1,5 +1,6 @@
 package P01_ComparableCircle;
-
+// Driver program for the Comparable Circle class.
+// The program creates and compares 5 circles with varying values.
 public class Main {
     public static void main(String[] args) {
         Circle circle1 = new Circle(5);
