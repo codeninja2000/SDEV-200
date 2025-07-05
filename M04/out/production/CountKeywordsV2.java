@@ -39,23 +39,21 @@ public class CountKeywordsV2 {
 
         while (input.hasNext()) {
             String word = input.next();
-            if (word.equals("//")) { // Don't count comments
+            if (word.contains("//"))
                 input.nextLine();
-            }
-            else if (word.contains("\"")) { // Don't count string
-                String nextWord;
-                do {
-                    nextWord = input.next();
-                } while (!nextWord.contains("\""));
-            }
-            else if (word.contains("/*")) { // Don't count block comments
-                String nextWord;
-                do {
-                    nextWord = input.next();
-                } while (!nextWord.contains("*/"));
-            }
-            else if (keywordSet.contains(word))
+            else if (word.contains("/*")) {
+                String nxt = "";
+                while (!nxt.contains("*/")) {
+                    nxt = input.next();
+                }
+            } else if (word.contains("\"")) {
+                String nxt = "";
+                while (!nxt.contains("\"")) {
+                    nxt = input.next();
+                }
+            } else if (keywordSet.contains(word)) {
                 count++;
+            }
         }
             return count;
 
