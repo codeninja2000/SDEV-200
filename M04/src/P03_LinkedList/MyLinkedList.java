@@ -2,12 +2,22 @@ package P03_LinkedList;
 
 import java.util.Arrays;
 
+/**
+ * MyLinkedList is a custom implementation of a doubly linked list.
+ * It implements the MyList interface and provides methods to manipulate the list.
+ * The list supports operations such as adding, removing, and accessing elements.
+ *
+ * @param <E> the type of elements in this list
+ */
 public class MyLinkedList<E> implements MyList<E> {
-    protected Node<E> head, tail;
+    protected Node<E> head, tail = null;
     protected int size = 0; // Number of elements in the list
 
     /** Create an empty list */
     public MyLinkedList() {
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
     }
 
     /** Create a list from an array of objects */
@@ -38,8 +48,13 @@ public class MyLinkedList<E> implements MyList<E> {
     /** Add an element to the beginning of the list */
     public void addFirst(E e) {
         Node<E> newNode = new Node<>(e); // Create a new node
+        newNode.previous = null;
         newNode.next = head; // link the new node with the head
+        if (head != null) {
+            head.previous = newNode;
+        }
         head = newNode; // head points to the new node
+
         size++; // Increase list size
 
         if (tail == null) // the new node is the only node in list
@@ -50,12 +65,20 @@ public class MyLinkedList<E> implements MyList<E> {
     public void addLast(E e) {
         Node<E> newNode = new Node<>(e); // Create a new for element e
 
-        if (tail == null) {
-            head = tail = newNode; // The new node is the only node in list
+        if (head == null) {
+            head = newNode;
         }
         else {
-            tail.next = newNode; // Link the new with the last node
-            tail = newNode; // tail now points to the last node
+            Node<E> current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+
+            // Set the next of last node to the new node
+            current.next = newNode;
+
+            // Set the prev of new node to the last node
+            newNode.previous = current;
         }
 
         size++; // Increase size
@@ -71,15 +94,23 @@ public class MyLinkedList<E> implements MyList<E> {
             addLast(e);
         }
         else {
+            Node<E> newNode = new Node<>(e);
             Node<E> current = head;
             for (int i = 1; i < index; i++) {
                 current = current.next;
             }
-            Node<E> temp = current.next;
-            current.next = new Node<>(e);
-            (current.next).next = temp;
+            if (current == null) {
+                return;
+            }
+            newNode.previous = current;
+            newNode.next = current.next;
+            current.next = newNode;
+            if (newNode.next != null) {
+                newNode.next.previous = newNode;
+            }
             size++;
         }
+
     }
 
     /** Remove the head node and
@@ -95,6 +126,9 @@ public class MyLinkedList<E> implements MyList<E> {
             if (head == null) {
                 tail = null;
             }
+            else {
+                head.previous = null;
+            }
             return temp;
         }
     }
@@ -105,25 +139,24 @@ public class MyLinkedList<E> implements MyList<E> {
         if (size == 0) {
             return null;
         }
-        else if (size == 1) {
-            E temp = head.element;
-            head = tail = null;
-            size = 0;
-            return temp;
+        if (head.next == null) {
+            return null;
         }
-        else {
-            Node<E> current = head;
+        Node<E> current = head;
 
-            for (int i = 0; i < size - 2; i++) {
-                current = current.next;
-            }
-
-            E temp = tail.element;
-            tail = current;
-            tail.next = null;
-            size--;
-            return temp;
+        while (current.next != null) {
+            current = current.next;
         }
+        Node<E> temp = current;
+       if (current.previous != null) {
+           current.previous.next = null;
+       }
+       else {
+           head = null;
+       }
+       tail = current.previous;
+       size--;
+       return temp.element;
     }
 
     @Override /** Remove the element at the specified position in this
@@ -215,16 +248,17 @@ public class MyLinkedList<E> implements MyList<E> {
         return new LinkedListIterator();
     }
 
+    /** Returns an iterator for the elements in this list */
     private class LinkedListIterator
             implements java.util.Iterator<E> {
         private Node<E> current = head; // Current index
 
-        @Override
+        @Override /** Check if there are more elements in the list */
         public boolean hasNext() {
             return (current != null);
         }
 
-        @Override
+        @Override /** Get the current element and move to the next */
         public E next() {
             E e = current.element;
             current = current.next;
@@ -232,13 +266,38 @@ public class MyLinkedList<E> implements MyList<E> {
         }
 
         @Override
+        /** Remove the current element returned by next() */
         public void remove() {
             // Left as an exercise
+
+            if (current == null) {
+                throw new IllegalStateException();
+            }
+            if (current == head) {
+                // If we're removing the first element
+                head = current.next;
+                if (head != null) {
+                    head.previous = null;
+                } else {
+                    tail = null;
+                }
+            } else {
+                // For elements in the middle or end
+                current.previous.next = current.next;
+                if (current.next != null) {
+                    current.next.previous = current.previous;
+                } else {
+                    tail = current.previous;
+                }
+            }
+
+            current = current.next;
+            size--;
 
 
         }
     }
-
+    /** Node class for doubly linked list */
     protected static class Node<E> {
         E element;
         Node<E> next;

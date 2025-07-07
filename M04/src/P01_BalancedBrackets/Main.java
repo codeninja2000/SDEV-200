@@ -5,6 +5,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayDeque;
 
+/**
+ * Program takes a source file as input and checks if the brackets in the file are balanced.
+ * The brackets considered are: (), {}, and [].
+ */
 public class Main {
     public static void main(String[] args) {
         if (args.length != 1) {
@@ -30,7 +34,6 @@ public class Main {
      * @return true if the brackets are balanced, false otherwise.
      */
     public static boolean isBalanced(String str) {
-        // Create a stack to keep track of open parentheses
         // Side note: Oracle recommends using ArrayDeque for stack operations since it is more efficient than Stack.
         ArrayDeque<Character> openParenStack = new ArrayDeque<>();
         // Iterate through each character in the string
@@ -50,14 +53,18 @@ public class Main {
         // If the stack is empty, all open parentheses were matched
         return openParenStack.isEmpty();
     }
+    /**
+     * Loads the content of a file into a string.
+     *
+     * @param filename The name of the file to load.
+     * @return The content of the file as a string.
+     * @throws IOException If an error occurs while reading the file.
+     */
     public static String loadFileAsString(String filename) throws IOException {
         Path filePath = Paths.get(filename);
         String fileContent;
-        try {
-            fileContent = java.nio.file.Files.readString(filePath);
-        } catch (IOException e) {
-            throw new IOException("Error reading file: " + filename, e);
-        }
+        fileContent = java.nio.file.Files.readString(filePath);
+
         return fileContent;
     }
 }
