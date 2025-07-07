@@ -2,7 +2,7 @@
 
 ![](resources/bannerforsdev200.png)
 
-Full disclosure: I created this banner using Microsoft's Designer tool. In other words I used generative AI. 
+Full disclosure: I created this banner using Microsoft's Designer tool (generative AI). 
 
 ### Description:
 
@@ -29,3 +29,9 @@ Repository for my Java class programming assignments.
 - [P01 - ComparableCircle](M03/src/P01_ComparableCircle)
 - [P02 - RationalBigInteger](M03/src/P02_RationalBigInteger)
 - [out - compiled programs](M03/out/production)
+
+[Module 04](M04)
+- [P01 - BalancedBrackets](M04/src/P01_BalancedBrackets)
+- [P02 - CountKeywordsV2](M04/src/P02_CountKeywordsV2)
+- [P03 - LinkedList](M04/src/P03_LinkedList)
+- [out - compiled programs](M04/out/production)
