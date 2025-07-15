@@ -25,18 +25,45 @@ public class GridPaneApp extends Application {
         pane.setPadding(new Insets(10, 10, 10, 10));
         pane.setHgap(10);
         pane.setVgap(10);
-        // Load images and add them to the grid pane
-        pane.add(new ImageView(new Image("/images/germany.gif")), 0, 0);
-        pane.add(new ImageView(new Image("/images/china.gif")), 1, 0);
-        pane.add(new ImageView(new Image("/images/fr.gif")), 0, 1);
-        pane.add(new ImageView(new Image("/images/us.jpg")), 1, 1);
+
+        // image paths and their positions in the grid
+        String[] imagePaths = {
+            "/com.m05.GridPane/images/germany.gif",
+            "/com.m05.GridPane/images/china.gif",
+            "/com.m05.GridPane/images/fr.gif",
+            "/com.m05.GridPane/images/us.jpg"
+        };
+        int[][] positions = {{0,0}, {1,0}, {0,1}, {1,1}};
+
+        // Load images and add them to the grid pane at specified positions
+        for (int i = 0; i < imagePaths.length; i++) {
+            try {
+                Image img = loadImage(imagePaths[i]);
+                if (img != null) {
+                    pane.add(new ImageView(img), positions[i][0], positions[i][1]);
+                }
+            } catch (Exception e) {
+                System.err.println("Failed to load image: " + imagePaths[i]);
+            }
+        }
 
         // Create a scene with the grid pane
         Scene scene = new Scene(pane);
         stage.setTitle("GridPane Example");
         stage.setScene(scene);
         stage.show();
+    }
 
+    /**
+     * Loads an image from the specified path.
+     * @param path The path to the image resource.
+     * @return The loaded Image, or null if the resource is not found.
+     */
+    private Image loadImage(String path) {
+        if (getClass().getResource(path) != null) {
+            return new Image(getClass().getResource(path).toExternalForm());
+        }
+        return null;
     }
 
     public static void main(String[] args) {
