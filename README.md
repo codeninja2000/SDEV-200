@@ -36,7 +36,7 @@ Repository for my Java class programming assignments.
 - [P03 - LinkedList](M04/src/P03_LinkedList)
 - [out - compiled programs](M04/out/production)
 
-[Module 05](CircleBW/src/main/java/com/m05)  
+[Module 05 (CircleBW)](CircleBW/src/main/java/com/m05)  
 - [P01 - GridPane](CircleBW/src/main/java/com/m05/GridPane)
 - [P02 - circleBW](CircleBW/src/main/java/com/m05/circlebw)
 - [P03 - TextColor](CircleBW/src/main/java/com/m05/TextColor)
