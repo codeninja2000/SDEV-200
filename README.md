@@ -40,3 +40,9 @@ Repository for my Java class programming assignments.
 - [P01 - GridPane](CircleBW/src/main/java/com/m05/GridPane)
 - [P02 - circleBW](CircleBW/src/main/java/com/m05/circlebw)
 - [P03 - TextColor](CircleBW/src/main/java/com/m05/TextColor)
+- [out - compiled programs](out/production/M05)
+
+> [!NOTE]
+> The reason M05 is named CircleBW is due to a naming mishap. </br> I've tried to safely
+> rename it but have run into some challenges.
+
