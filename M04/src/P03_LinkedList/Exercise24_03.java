@@ -319,18 +319,24 @@ class TwoWayLinkedList<E> implements MyList<E> {
 
     private class LinkedListIterator implements java.util.ListIterator<E> {
         private Node<E> current = head; // Current index
-
+        private int nextIndex = 0; // Next index to be returned
         public LinkedListIterator() {
             // Start at the head of the list
             current = head;
+            nextIndex = 0; // Initialize next index to 0
         }
 
         public LinkedListIterator(int index) {
-            if (index < 0 || index >= size)
-                throw new IndexOutOfBoundsException("Index: " + index + ", Size: "
-                        + size);
-            for (int nextIndex = 0; nextIndex < index; nextIndex++)
-                current = current.next;
+            if (index < 0 || index > size)
+                throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+            if (index == size) {
+                current = null;
+            } else {
+                current = head;
+                for (int i = 0; i < index; i++)
+                    current = current.next;
+            }
+            nextIndex = index;
         }
 
         public void setLast() {
@@ -346,6 +352,7 @@ class TwoWayLinkedList<E> implements MyList<E> {
         public E next() {
             E e = current.element;
             current = current.next;
+            nextIndex++;
             return e;
         }
 
@@ -369,37 +376,35 @@ class TwoWayLinkedList<E> implements MyList<E> {
         }
 
         @Override
-        public void add(E e) {
-            Node<E> newNode = new Node<>(e);
-            // Case 1: If the list is empty
-            if (head == null) {
-                head = newNode;
-                tail = newNode;
+        // Corrected add method for inserting at any index
+        public void add(int index, E e) {
+            if (index < 0 || index > size) {
+                throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
             }
-            // Case 2: If adding at the end of the list
-            else if (current == null) {
-                tail.next = newNode;
-                newNode.previous = tail;
-                tail = newNode;
-            }
-            // Case 3: If adding at the beginning of the list
-            else if (current == head) {
-                newNode.next = head;
-                head.previous = newNode;
-                head = newNode;
-            }
-            // Case 4: If adding in the middle of the list
-            else {
+            if (index == 0) {
+                addFirst(e);
+            } else if (index == size) {
+                addLast(e);
+            } else {
+                Node<E> current = head;
+                for (int i = 0; i < index; i++) {
+                    current = current.next;
+                }
+                Node<E> newNode = new Node<>(e);
                 newNode.previous = current.previous;
                 newNode.next = current;
                 current.previous.next = newNode;
                 current.previous = newNode;
+                size++;
             }
         }
 
         @Override
         public boolean hasPrevious() {
-            return current != null;
+            if (current == null) {
+                return tail != null;
+            }
+            return current.previous != null || current == head;
         }
 
         @Override
@@ -410,9 +415,13 @@ class TwoWayLinkedList<E> implements MyList<E> {
 
         @Override
         public E previous() {
-            E e = current.element;
-            current = current.previous;
-            return e;
+            if (current == null) {
+                current = tail;
+            } else {
+                current = current.previous;
+            }
+            nextIndex--;
+            return current.element;
         }
 
         @Override
