@@ -46,4 +46,5 @@ Repository for my Java class programming assignments.
 > The reason M05 is named CircleBW is due to a naming mishap. </br> I've tried to safely
 > rename it but have run into some challenges.
 
-[Module 06](M06/src/main/java/com/m06/p01_staffrecord)
+[Module 06](M06)
+- [P01 - StaffRecord](M06/src/main/java/com/m06/p01_staffrecord)
