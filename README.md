@@ -48,4 +48,4 @@ Repository for my Java class programming assignments.
 
 [Module 06](M06)
 - [P01 - StaffRecord](M06/src/main/java/com/m06/p01_staffrecord)
-- [P02 - StaffRecord](M06b/src/main/java/com/m06/p02_batch)
+- [P02 - Batch](M06b/src/main/java/com/m06/p02_batch)
