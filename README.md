@@ -52,3 +52,4 @@ Repository for my Java class programming assignments.
 
 [Module 07](M07)
 - [P01 - CalculateLoan](M07/CalculateLoan/src/main/java/com/calculateloan)
+- [P02 - AdditionQuiz](M07/AdditionQuiz/src/main/webapp)
