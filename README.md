@@ -49,3 +49,6 @@ Repository for my Java class programming assignments.
 [Module 06](M06)
 - [P01 - StaffRecord](M06/src/main/java/com/m06/p01_staffrecord)
 - [P02 - Batch](M06b/src/main/java/com/m06/p02_batch)
+
+[Module 07](M07)
+- [P01 - CalculateLoan](M07/CalculateLoan/src/main/java/com/calculateloan)
